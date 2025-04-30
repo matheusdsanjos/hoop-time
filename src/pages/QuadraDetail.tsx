@@ -232,6 +232,16 @@ const QuadraDetail: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
+  const abrirNoMapa = () => {
+    if (quadra?.endereco) {
+      const enderecoFormatado = encodeURIComponent(quadra.endereco);
+      window.open(`https://www.google.com/maps/search/?api=1&query=${enderecoFormatado}`, '_blank');
+    } else {
+      const localizacaoFormatada = encodeURIComponent(`${quadra?.bairro}, Campinas - SP`);
+      window.open(`https://www.google.com/maps/search/?api=1&query=${localizacaoFormatada}`, '_blank');
+    }
+  };
+  
   useEffect(() => {
     const fetchQuadra = async () => {
       if (!id) return;
@@ -391,7 +401,7 @@ const QuadraDetail: React.FC = () => {
                   <Button variant="outline" fullWidth>Solicitar Informações</Button>
                 </>
               ) : (
-                <Button variant="primary" fullWidth>Ver no Mapa</Button>
+                <Button variant="primary" fullWidth onClick={abrirNoMapa}>Ver no Mapa</Button>
               )}
             </ButtonGroup>
           </SidebarCard>

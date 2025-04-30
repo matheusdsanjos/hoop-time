@@ -1,10 +1,30 @@
 # Hoop Time - Plataforma de Quadras de Basquete em Campinas
 
-![Hoop Time](https://images.unsplash.com/photo-1546519638-68e109acd27d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80)
+## Trabalho de Conclusão de Curso (TCC)
+### Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas
+### Instituto Federal de Educação, Ciência e Tecnologia de São Paulo (IFSP) - Campus Campinas
 
-Hoop Time é uma plataforma web desenvolvida com React e TypeScript que permite aos usuários encontrar, avaliar e agendar quadras de basquete em Campinas, SP.
+## Resumo
 
-## Características
+O Hoop Time é uma plataforma web desenvolvida com React e TypeScript que visa facilitar a localização, avaliação e agendamento de quadras de basquete na cidade de Campinas. O projeto busca resolver o problema da dificuldade de encontrar espaços adequados para a prática do basquete, promovendo a integração entre praticantes e proprietários de quadras.
+
+## Objetivos
+
+### Objetivo Geral
+Desenvolver uma plataforma web que facilite a localização e agendamento de quadras de basquete em Campinas, promovendo a prática do esporte e a integração da comunidade.
+
+### Objetivos Específicos
+- Implementar um sistema de busca e filtragem de quadras por localização e características
+- Desenvolver um sistema de avaliação e comentários para as quadras
+- Criar um módulo de agendamento online para quadras privadas
+- Implementar um mapa interativo para visualização das quadras
+- Desenvolver uma interface responsiva e acessível
+
+## Justificativa
+
+A prática de esportes é fundamental para a saúde e bem-estar da população. No entanto, muitos praticantes de basquete enfrentam dificuldades para encontrar espaços adequados para a prática do esporte. Esta plataforma visa solucionar este problema, promovendo a democratização do acesso às quadras de basquete e fomentando a prática esportiva na cidade de Campinas.
+
+## Características Técnicas
 
 - **Design Responsivo**: Interface adaptável para dispositivos móveis, tablets e desktops
 - **Busca de Quadras**: Filtragem por bairro, tipo de quadra e avaliação
@@ -21,6 +41,16 @@ Hoop Time é uma plataforma web desenvolvida com React e TypeScript que permite 
 - Styled Components
 - Design System próprio
 
+## Metodologia
+
+O desenvolvimento do projeto seguirá a metodologia ágil Scrum, com sprints de duas semanas e reuniões diárias de acompanhamento. O processo de desenvolvimento incluirá:
+
+1. Análise de requisitos
+2. Prototipação
+3. Desenvolvimento iterativo
+4. Testes de usabilidade
+5. Implementação e deploy
+
 ## Rodando o Projeto
 
 ### Pré-requisitos
@@ -32,7 +62,7 @@ Hoop Time é uma plataforma web desenvolvida com React e TypeScript que permite 
 
 1. Clone este repositório:
    ```
-   git clone https://github.com/seu-usuario/hoop-time.git
+   git clone https://github.com/matheusdsanjos/hoop-time.git
    ```
 
 2. Navegue até a pasta do projeto:
@@ -81,14 +111,26 @@ O projeto utiliza um Design System próprio com os seguintes componentes:
 - **Header/Footer**: Componentes de navegação e rodapé
 - **Elementos de Formulário**: Inputs, selects, etc.
 
-## Fluxo do Usuário
+## Cronograma de Desenvolvimento
 
-1. Usuário acessa a página inicial
-2. Pode pesquisar quadras por localização/tipo
-3. Visualiza a lista de quadras ou mapa
-4. Acessa detalhes da quadra
-5. Para quadras privadas, pode iniciar processo de agendamento
+1. **Fase 1** (Mês 1-2): Análise de requisitos e prototipação
+2. **Fase 2** (Mês 3-4): Desenvolvimento do frontend
+3. **Fase 3** (Mês 5-6): Implementação do backend e integração
+4. **Fase 4** (Mês 7-8): Testes e refinamentos
+5. **Fase 5** (Mês 9-10): Documentação e preparação para apresentação
 
-## Desenvolvido Por
+## Referências
 
-Este projeto foi desenvolvido como parte do curso/desafio de desenvolvimento web. 
+- React Documentation
+- TypeScript Handbook
+- Material Design Guidelines
+- Artigos acadêmicos sobre desenvolvimento web e UX/UI
+
+## Autores
+
+- [Nome do Aluno] - Desenvolvedor Full Stack
+- [Nome do Orientador] - Professor Orientador
+
+## Agradecimentos
+
+Agradecemos ao IFSP - Campus Campinas pelo suporte e orientação durante o desenvolvimento deste trabalho. 
