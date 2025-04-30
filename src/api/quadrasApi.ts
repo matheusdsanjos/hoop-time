@@ -1,4 +1,13 @@
 // API simulada para dados de quadras de basquete em Campinas
+import quadraTaquaral from '../assets/images/quadra-parque-taquaral.png';
+import quadraFlamboyant from '../assets/images/quadra-flamboyant.png';
+import quadraParqueEcologico from '../assets/images/quadra-parque-ecologico.png';
+import quadraBosque from '../assets/images/quadra-bosque.png';
+import quadraClubeCampineiro from '../assets/images/quadra-clube-campineiro.png';
+import quadraMunicipal from '../assets/images/quadra-municipal.png';
+import quadraEliteBasketball from '../assets/images/quadra-elite-basketball.png';
+import quadraPraçaEsportes from '../assets/images/quadra-praca-esportes.png';
+
 
 interface Quadra {
   id: number;
@@ -15,30 +24,30 @@ interface Quadra {
 const quadrasDatabase: Quadra[] = [
   {
     id: 1,
-    nome: "Quadra Taquaral",
+    nome: "Parque Portugal",
     bairro: "Taquaral",
     tipo: "publica",
     avaliacao: 4.5,
-    endereco: "Av. Heitor Penteado, s/n - Parque Taquaral",
-    imagem: "https://images.unsplash.com/photo-1505666287802-931dc83a0fe4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80",
+    endereco: "Av. Heitor Penteado, 1146 - Parque Taquaral",
+    imagem: quadraTaquaral,
   },
   {
     id: 2,
-    nome: "Arena Sports",
-    bairro: "Cambuí",
-    tipo: "privada",
+    nome: "Praça Omar Cardoso",
+    bairro: "Jardim Flamboyant",
+    tipo: "publica",
     avaliacao: 4.8,
-    endereco: "R. Coronel Quirino, 1500 - Cambuí",
-    imagem: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80",
+    endereco: "R. Presidente Prudente, 600 - Jardim Flamboyant",
+    imagem: quadraFlamboyant,
   },
   {
     id: 3,
-    nome: "Quadra do Bosque",
+    nome: "Parque Ecológico",
     bairro: "Barão Geraldo",
     tipo: "publica",
     avaliacao: 3.7,
     endereco: "R. Angela Signori Grigol, 155 - Distrito de Barão Geraldo",
-    imagem: "https://images.unsplash.com/photo-1519432359516-73a2bb421826?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    imagem: quadraParqueEcologico,
   },
   {
     id: 4,

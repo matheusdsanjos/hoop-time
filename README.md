@@ -128,9 +128,5 @@ O projeto utiliza um Design System próprio com os seguintes componentes:
 
 ## Autores
 
-- [Nome do Aluno] - Desenvolvedor Full Stack
-- [Nome do Orientador] - Professor Orientador
-
-## Agradecimentos
-
-Agradecemos ao IFSP - Campus Campinas pelo suporte e orientação durante o desenvolvimento deste trabalho. 
+- Matheus dos Anjos de Oliveira - Aluno
+- Prof. Ms. Emilio Carlos Rodrigues - Professor Orientador 
