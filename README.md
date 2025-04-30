@@ -6,12 +6,12 @@
 
 ## Resumo
 
-O Hoop Time é uma plataforma web desenvolvida com React e TypeScript que visa facilitar a localização, avaliação e agendamento de quadras de basquete na cidade de Campinas. O projeto busca resolver o problema da dificuldade de encontrar espaços adequados para a prática do basquete, promovendo a integração entre praticantes e proprietários de quadras.
+O Hoop Time é modelo front-end web desenvolvido com React e TypeScript que visa facilitar a localização, avaliação e agendamento de quadras de basquete. O projeto busca resolver o problema da dificuldade de encontrar espaços adequados para a prática do basquete, promovendo a integração entre praticantes e proprietários de quadras.
 
 ## Objetivos
 
 ### Objetivo Geral
-Desenvolver uma plataforma web que facilite a localização e agendamento de quadras de basquete em Campinas, promovendo a prática do esporte e a integração da comunidade.
+Desenvolver uma plataforma web que facilite a localização e agendamento de quadras de basquete, promovendo a prática do esporte e a integração da comunidade.
 
 ### Objetivos Específicos
 - Implementar um sistema de busca e filtragem de quadras por localização e características
@@ -22,7 +22,7 @@ Desenvolver uma plataforma web que facilite a localização e agendamento de qua
 
 ## Justificativa
 
-A prática de esportes é fundamental para a saúde e bem-estar da população. No entanto, muitos praticantes de basquete enfrentam dificuldades para encontrar espaços adequados para a prática do esporte. Esta plataforma visa solucionar este problema, promovendo a democratização do acesso às quadras de basquete e fomentando a prática esportiva na cidade de Campinas.
+A prática de esportes é fundamental para a saúde e bem-estar da população. No entanto, muitos praticantes de basquete enfrentam dificuldades para encontrar espaços adequados para a prática do esporte. Esta plataforma visa solucionar este problema, promovendo a democratização do acesso às quadras de basquete e fomentando a prática esportiva.
 
 ## Características Técnicas
 
