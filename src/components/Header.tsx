@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { SportsBasketball } from '@mui/icons-material';
 
 // Estilos
 const HeaderContainer = styled.header`
@@ -24,6 +25,7 @@ const NavContainer = styled.div`
 const Logo = styled(Link)`
   display: flex;
   align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
   color: ${({ theme }) => theme.colors.secondary};
   font-weight: 700;
   font-size: 1.5rem;
@@ -78,7 +80,7 @@ const NavItem = styled.div<{ active: boolean }>`
 
     &:hover {
       color: ${({ theme }) => theme.colors.secondary};
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgb(255, 255, 255, 0.50);
     }
   }
 `;
@@ -113,6 +115,7 @@ const Header: React.FC = () => {
     <HeaderContainer>
       <NavContainer>
         <Logo to="/">
+          <SportsBasketball />
           <span>Hoop Time</span>
         </Logo>
 

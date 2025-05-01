@@ -2,11 +2,8 @@
 import quadraTaquaral from '../assets/images/quadra-parque-taquaral.png';
 import quadraFlamboyant from '../assets/images/quadra-flamboyant.png';
 import quadraParqueEcologico from '../assets/images/quadra-parque-ecologico.png';
-import quadraBosque from '../assets/images/quadra-bosque.png';
-import quadraClubeCampineiro from '../assets/images/quadra-clube-campineiro.png';
-import quadraMunicipal from '../assets/images/quadra-municipal.png';
-import quadraEliteBasketball from '../assets/images/quadra-elite-basketball.png';
-import quadraPraçaEsportes from '../assets/images/quadra-praca-esportes.png';
+import quadraVilaIapi from '../assets/images/quadra-vila-iapi.png';
+import quadraPontePreta from '../assets/images/quadra-ponte-preta.png';
 
 
 interface Quadra {
@@ -24,7 +21,7 @@ interface Quadra {
 const quadrasDatabase: Quadra[] = [
   {
     id: 1,
-    nome: "Parque Portugal",
+    nome: "Quadra do Parque Portugal",
     bairro: "Taquaral",
     tipo: "publica",
     avaliacao: 4.5,
@@ -33,43 +30,43 @@ const quadrasDatabase: Quadra[] = [
   },
   {
     id: 2,
-    nome: "Praça Omar Cardoso",
+    nome: "Quadra da Praça Omar Cardoso",
     bairro: "Jardim Flamboyant",
     tipo: "publica",
     avaliacao: 4.8,
-    endereco: "R. Presidente Prudente, 600 - Jardim Flamboyant",
+    endereco: "Rua Salesópolis, 756 - Jardim Flamboyant",
     imagem: quadraFlamboyant,
   },
   {
     id: 3,
-    nome: "Parque Ecológico",
+    nome: "Quadra do Parque Ecológico de Campinas",
     bairro: "Barão Geraldo",
     tipo: "publica",
     avaliacao: 3.7,
-    endereco: "R. Angela Signori Grigol, 155 - Distrito de Barão Geraldo",
+    endereco: "Avenida Heitor Penteado, km 3 - Vila Brandina",
     imagem: quadraParqueEcologico,
   },
   {
     id: 4,
-    nome: "Clube Campineiro",
-    bairro: "Centro",
-    tipo: "privada",
+    nome: "Quadra da Praça Carlos Zara",
+    bairro: "Ponte Preta",
+    tipo: "publica",
     avaliacao: 4.2,
-    endereco: "Av. Francisco Glicério, 750 - Centro",
-    imagem: "https://images.unsplash.com/photo-1546519638-68e109acd27d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80",
+    endereco: "Avenida da Saudade, 247 - Ponte Preta",
+    imagem: quadraPontePreta,
   },
   {
     id: 5,
-    nome: "Quadra Municipal",
-    bairro: "São Bernardo",
+    nome: "Quadra da Sociedade Beneficiente dos Amigos da Vila Iapi",
+    bairro: "Vila Iapi",
     tipo: "publica",
     avaliacao: 3.5,
-    endereco: "R. Serra Azul, 635 - São Bernardo",
-    imagem: "https://images.unsplash.com/photo-1608245449230-4ac19066d2d0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+    endereco: "Rua Almir Carneiro Silva, 220 - Vila Iapi",
+    imagem: quadraVilaIapi,
   },
   {
     id: 6,
-    nome: "Elite Basketball",
+    nome: "Quadra no Guarani Futebol Clube",
     bairro: "Cambuí",
     tipo: "privada",
     avaliacao: 4.9,
@@ -137,6 +134,8 @@ export const bairrosCampinas = [
   "Taquaral",
   "Cambuí",
   "Barão Geraldo",
+  "Vila Iapi",
+  "Jardim Flamboyant",
   "Centro",
   "São Bernardo",
   "Jardim Chapadão",
@@ -216,8 +215,10 @@ export const buscarQuadraPorId = async (id: number): Promise<Quadra | null> => {
   return quadra || null;
 };
 
-export default {
+const quadrasApi = {
   buscarQuadras,
   buscarQuadraPorId,
   bairrosCampinas
-}; 
+};
+
+export default quadrasApi; 

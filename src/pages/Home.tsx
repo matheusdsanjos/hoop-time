@@ -279,7 +279,7 @@ const Home: React.FC = () => {
         <HeroContent>
           <HeroTitle>Bem-vindo ao Hoop Time</HeroTitle>
           <HeroSubtitle>
-            Sua plataforma completa para encontrar, avaliar e agendar quadras de basquete em Campinas.
+            Sua plataforma completa para buscar informações sobre quadras de basquete em sua região.
             Conecte-se com a comunidade e encontre os melhores locais para jogar.
           </HeroSubtitle>
           <HeroButtons>
@@ -299,7 +299,7 @@ const Home: React.FC = () => {
             <AboutContent>
               <AboutTitle>Sobre o Hoop Time</AboutTitle>
               <AboutText>
-                O Hoop Time nasceu da paixão pelo basquete e da necessidade de facilitar o acesso às quadras em Campinas. 
+                O Hoop Time nasceu da paixão pelo basquete e da necessidade de facilitar o acesso a quadras de basquete em sua região. 
                 Nossa plataforma foi criada para conectar jogadores a espaços de qualidade, 
                 sejam eles públicos ou privados.
               </AboutText>
@@ -308,7 +308,7 @@ const Home: React.FC = () => {
                 facilitando o acesso à informação sobre locais para jogar e seus recursos.
               </AboutText>
               <AboutList>
-                <AboutListItem>Cadastro completo de quadras públicas e privadas em toda Campinas</AboutListItem>
+                <AboutListItem>Cadastro completo de quadras públicas e privadas em toda a cidade</AboutListItem>
                 <AboutListItem>Sistema de avaliação e comentários para melhorar a experiência de todos</AboutListItem>
                 <AboutListItem>Agendamento online para quadras privadas com confirmação imediata</AboutListItem>
                 <AboutListItem>Informações detalhadas sobre estrutura, horários e preços</AboutListItem>
