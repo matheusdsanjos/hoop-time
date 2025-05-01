@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../components/Button';
+import { buscarQuadras, BuscaQuadrasParams } from '../api/quadrasApi';
+import type { Quadra } from '../api/quadrasApi';
 
 const MapaContainer = styled.div`
   display: flex;
@@ -96,13 +98,15 @@ const MapIcon = styled.div`
 `;
 
 const Mapa: React.FC = () => {
+  const [quadras, setQuadras] = useState<Quadra[]>([]);
+
   return (
     <MapaContainer>
       <PageHeader>
         <Container>
           <Title>Mapa de Quadras</Title>
           <Subtitle>
-            Encontre quadras de basquete em Campinas em nosso mapa interativo
+            Encontre quadras de basquete na região em nosso mapa interativo
           </Subtitle>
         </Container>
       </PageHeader>

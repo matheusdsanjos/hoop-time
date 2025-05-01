@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from './Button';
 
-interface QuadraCardProps {
+interface Quadra {
   id: number;
   nome: string;
   bairro: string;
@@ -13,6 +13,10 @@ interface QuadraCardProps {
   disponivel?: boolean;
   horarioFuncionamento?: string;
   endereco?: string;
+}
+
+interface QuadraCardProps {
+  quadra: Quadra;
 }
 
 const CardContainer = styled(Link)`
@@ -128,17 +132,7 @@ const CardInfo = styled.div`
   color: ${({ theme }) => theme.colors.lightText};
 `;
 
-const QuadraCard: React.FC<QuadraCardProps> = ({
-  id,
-  nome,
-  bairro,
-  tipo,
-  avaliacao,
-  imagem,
-  disponivel = true,
-  horarioFuncionamento,
-  endereco
-}) => {
+const QuadraCard: React.FC<QuadraCardProps> = ({ quadra }) => {
   // Função para renderizar estrelas
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
@@ -161,55 +155,55 @@ const QuadraCard: React.FC<QuadraCardProps> = ({
   };
 
   return (
-    <CardContainer to={`/quadras/${id}`}>
+    <CardContainer to={`/quadras/${quadra.id}`}>
       <CardImage 
-        imageUrl={imagem}
+        imageUrl={quadra.imagem}
         role="img"
-        aria-label={`Foto da quadra ${nome}`}
+        aria-label={`Foto da quadra ${quadra.nome}`}
       >
-        <CardBadge tipo={tipo}>
-          {tipo === 'publica' ? 'Pública' : 'Privada'}
+        <CardBadge tipo={quadra.tipo}>
+          {quadra.tipo === 'publica' ? 'Pública' : 'Privada'}
         </CardBadge>
-        {tipo === 'privada' && (
-          <DisponibilidadeTag disponivel={disponivel}>
-            {disponivel ? 'Disponível' : 'Indisponível'}
+        {quadra.tipo === 'privada' && (
+          <DisponibilidadeTag disponivel={quadra.disponivel || true}>
+            {quadra.disponivel ? 'Disponível' : 'Indisponível'}
           </DisponibilidadeTag>
         )}
       </CardImage>
       <CardContent>
-        <CardTitle>{nome}</CardTitle>
-        <CardLocation>{bairro}</CardLocation>
+        <CardTitle>{quadra.nome}</CardTitle>
+        <CardLocation>{quadra.bairro}</CardLocation>
         
         <CardInfo>
-          {horarioFuncionamento && (
-            <span>Horário: {horarioFuncionamento}</span>
+          {quadra.horarioFuncionamento && (
+            <span>Horário: {quadra.horarioFuncionamento}</span>
           )}
-          {endereco && (
-            <span>Endereço: {endereco}</span>
+          {quadra.endereco && (
+            <span>Endereço: {quadra.endereco}</span>
           )}
         </CardInfo>
         
         <CardFooter>
           <Rating>
-            <Stars aria-label={`Avaliação: ${avaliacao} estrelas`}>
-              {renderStars(avaliacao)}
+            <Stars aria-label={`Avaliação: ${quadra.avaliacao} estrelas`}>
+              {renderStars(quadra.avaliacao)}
             </Stars>
-            <RatingValue>{avaliacao.toFixed(1)}</RatingValue>
+            <RatingValue>{quadra.avaliacao.toFixed(1)}</RatingValue>
           </Rating>
           
-          {tipo === 'privada' && (
+          {quadra.tipo === 'privada' && (
             <Button 
               variant="outline" 
               size="small"
-              disabled={!disponivel}
+              disabled={!quadra.disponivel}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 // Lógica para agendar
               }}
-              aria-label={disponivel ? 'Agendar quadra' : 'Quadra indisponível'}
+              aria-label={quadra.disponivel ? 'Agendar quadra' : 'Quadra indisponível'}
             >
-              {disponivel ? 'Agendar' : 'Indisponível'}
+              {quadra.disponivel ? 'Agendar' : 'Indisponível'}
             </Button>
           )}
         </CardFooter>

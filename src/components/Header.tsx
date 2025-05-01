@@ -118,7 +118,7 @@ const Header: React.FC = () => {
       <NavContainer>
         <Logo to="/">
           <SportsBasketball />
-          HoopTime
+          Hoop Time
         </Logo>
 
         <MenuToggle onClick={toggleMenu}>

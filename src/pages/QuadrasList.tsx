@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import QuadraCard from '../components/QuadraCard';
-import BuscaBairro from '../components/BuscaBairro';
 import QuadrasLoading from '../components/QuadrasLoading';
 import Button from '../components/Button';
-import { buscarQuadras, BuscaQuadrasParams } from '../api/quadrasApi';
+import { buscarQuadras, BuscaQuadrasParams, bairrosCampinas } from '../api/quadrasApi';
 
 interface Quadra {
   id: number;
@@ -16,13 +15,14 @@ interface Quadra {
 }
 
 const PageContainer = styled.div`
-  padding: ${({ theme }) => `${theme.spacing.xl} 0`};
+  min-height: 100vh;
+  background-color: ${({ theme }) => theme.colors.backgroundAlt};
 `;
 
 const PageHeader = styled.div`
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
-  padding: ${({ theme }) => `${theme.spacing.lg} 0`};
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: white;
+  padding: ${({ theme }) => theme.spacing.xl} 0;
 `;
 
 const Container = styled.div`
@@ -36,52 +36,51 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: ${({ theme }) => theme.spacing.sm};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 2rem;
+  }
 `;
 
 const Subtitle = styled.p`
-  color: ${({ theme }) => theme.colors.lightText};
   font-size: 1.1rem;
-  margin-bottom: ${({ theme }) => theme.spacing.md};
+  opacity: 0.9;
 `;
 
 const FiltersContainer = styled.div`
   background-color: white;
+  padding: ${({ theme }) => theme.spacing.xl};
   border-radius: ${({ theme }) => theme.borderRadius.medium};
   box-shadow: ${({ theme }) => theme.shadows.small};
-  padding: ${({ theme }) => theme.spacing.lg};
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
+  margin: -${({ theme }) => theme.spacing.xl} auto ${({ theme }) => theme.spacing.xl};
 `;
 
-const FiltersTitle = styled.h3`
+const FiltersTitle = styled.h2`
   font-size: 1.2rem;
-  margin-bottom: ${({ theme }) => theme.spacing.md};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
 `;
 
 const FiltersGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: ${({ theme }) => theme.spacing.md};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: ${({ theme }) => theme.spacing.lg};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
 `;
 
 const FilterGroup = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing.md};
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.xs};
 `;
 
 const FilterLabel = styled.label`
-  display: block;
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
   font-weight: 500;
-  font-size: 0.9rem;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const FilterSelect = styled.select`
-  width: 100%;
   padding: ${({ theme }) => theme.spacing.sm};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius.small};
@@ -94,52 +93,32 @@ const FilterSelect = styled.select`
   }
 `;
 
-const ResultsHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: ${({ theme }) => theme.spacing.md};
-  }
-`;
-
-const ResultsCount = styled.p`
-  font-size: 1.1rem;
-  font-weight: 500;
-`;
-
-const SortContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing.sm};
-`;
-
-const SortLabel = styled.span`
-  font-size: 0.9rem;
-`;
-
-const CardGrid = styled.div`
+const ResultsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: ${({ theme }) => theme.spacing.xl};
-  margin-bottom: ${({ theme }) => theme.spacing.xxl};
-`;
-
-const SearchButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: ${({ theme }) => theme.spacing.md};
+  gap: ${({ theme }) => theme.spacing.lg};
+  padding: ${({ theme }) => theme.spacing.xl} 0;
 `;
 
 const NoResults = styled.div`
   text-align: center;
-  padding: ${({ theme }) => theme.spacing.xl} 0;
+  padding: ${({ theme }) => theme.spacing.xxl} 0;
   color: ${({ theme }) => theme.colors.lightText};
-  font-size: 1.1rem;
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: ${({ theme }) => theme.spacing.md};
+  }
+  
+  p {
+    margin-bottom: ${({ theme }) => theme.spacing.lg};
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: ${({ theme }) => theme.spacing.lg};
 `;
 
 const QuadrasList: React.FC = () => {
@@ -184,7 +163,7 @@ const QuadrasList: React.FC = () => {
         <Container>
           <Title>Quadras de Basquete</Title>
           <Subtitle>
-            Encontre e compare quadras em Campinas
+            Encontre e compare quadras em sua região
           </Subtitle>
         </Container>
       </PageHeader>
@@ -195,11 +174,18 @@ const QuadrasList: React.FC = () => {
           <FiltersGrid>
             <FilterGroup>
               <FilterLabel htmlFor="bairro">Bairro</FilterLabel>
-              <BuscaBairro 
+              <FilterSelect 
+                id="bairro"
                 value={bairro}
-                onChange={setBairro}
-                placeholder="Digite o nome do bairro"
-              />
+                onChange={(e) => setBairro(e.target.value)}
+              >
+                <option value="">Todos os Bairros</option>
+                {bairrosCampinas.map((bairroOption) => (
+                  <option key={bairroOption} value={bairroOption}>
+                    {bairroOption}
+                  </option>
+                ))}
+              </FilterSelect>
             </FilterGroup>
             
             <FilterGroup>
@@ -228,68 +214,46 @@ const QuadrasList: React.FC = () => {
                 <option value="4.5">4.5+ estrelas</option>
               </FilterSelect>
             </FilterGroup>
+
+            <FilterGroup>
+              <FilterLabel htmlFor="ordenacao">Ordenar por</FilterLabel>
+              <FilterSelect
+                id="ordenacao"
+                value={ordenacao}
+                onChange={(e) => setOrdenacao(e.target.value as typeof ordenacao)}
+              >
+                <option value="relevancia">Relevância</option>
+                <option value="avaliacao">Melhor Avaliação</option>
+                <option value="nome-asc">Nome (A-Z)</option>
+                <option value="nome-desc">Nome (Z-A)</option>
+              </FilterSelect>
+            </FilterGroup>
           </FiltersGrid>
           
-          <SearchButtonContainer>
-            <Button 
-              onClick={handleBuscar}
-              size="medium"
-              variant="primary"
-            >
+          <ButtonContainer>
+            <Button onClick={handleBuscar} variant="primary">
               Buscar Quadras
             </Button>
-          </SearchButtonContainer>
+          </ButtonContainer>
         </FiltersContainer>
-        
+
         {isLoading ? (
-          <QuadrasLoading count={6} />
+          <QuadrasLoading />
         ) : (
           <>
             {isBuscaRealizada && (
-              <ResultsHeader>
-                <ResultsCount>{quadras.length} quadras encontradas</ResultsCount>
-                <SortContainer>
-                  <SortLabel>Ordenar por:</SortLabel>
-                  <FilterSelect 
-                    value={ordenacao}
-                    onChange={(e) => {
-                      setOrdenacao(e.target.value as 'relevancia' | 'avaliacao' | 'nome-asc' | 'nome-desc');
-                      if (isBuscaRealizada) {
-                        // Reordenar resultados ao trocar ordenação
-                        setTimeout(() => fetchQuadras(), 0);
-                      }
-                    }}
-                    style={{ width: 'auto' }}
-                  >
-                    <option value="relevancia">Relevância</option>
-                    <option value="avaliacao">Melhor Avaliação</option>
-                    <option value="nome-asc">Nome (A-Z)</option>
-                    <option value="nome-desc">Nome (Z-A)</option>
-                  </FilterSelect>
-                </SortContainer>
-              </ResultsHeader>
-            )}
-            
-            {isBuscaRealizada && quadras.length === 0 ? (
-              <NoResults>
-                Nenhuma quadra encontrada com os filtros selecionados.
-                <br />
-                Tente ajustar seus critérios de busca.
-              </NoResults>
-            ) : (
-              <CardGrid>
-                {quadras.map((quadra) => (
-                  <QuadraCard
-                    key={quadra.id}
-                    id={quadra.id}
-                    nome={quadra.nome}
-                    bairro={quadra.bairro}
-                    tipo={quadra.tipo}
-                    avaliacao={quadra.avaliacao}
-                    imagem={quadra.imagem}
-                  />
-                ))}
-              </CardGrid>
+              <ResultsContainer>
+                {quadras && quadras.length > 0 ? (
+                  quadras.map((quadra) => (
+                    quadra && <QuadraCard key={quadra.id} quadra={quadra} />
+                  ))
+                ) : (
+                  <NoResults>
+                    <h3>Nenhuma quadra encontrada</h3>
+                    <p>Tente ajustar os filtros para encontrar mais resultados</p>
+                  </NoResults>
+                )}
+              </ResultsContainer>
             )}
           </>
         )}

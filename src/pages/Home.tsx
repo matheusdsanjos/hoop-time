@@ -236,7 +236,8 @@ const AboutText = styled.p`
 
 const AboutList = styled.ul`
   margin: ${({ theme }) => theme.spacing.lg} 0;
-  padding-left: ${({ theme }) => theme.spacing.lg};
+  list-style: none;
+  padding: 0;
 `;
 
 const AboutListItem = styled.li`
@@ -244,13 +245,15 @@ const AboutListItem = styled.li`
   line-height: 1.5;
   color: ${({ theme }) => theme.colors.text};
   position: relative;
+  padding-left: ${({ theme }) => theme.spacing.lg};
   
   &::before {
-    content: "✓";
+    content: "•";
+    font-size: 1.5em;
     color: ${({ theme }) => theme.colors.primary};
-    margin-right: ${({ theme }) => theme.spacing.sm};
     position: absolute;
-    left: -${({ theme }) => theme.spacing.lg};
+    left: 0;
+    top: -0.2em;
   }
 `;
 
@@ -370,12 +373,7 @@ const Home: React.FC = () => {
               quadrasDestaque.map((quadra) => (
                 <QuadraCard
                   key={quadra.id}
-                  id={quadra.id}
-                  nome={quadra.nome}
-                  bairro={quadra.bairro}
-                  tipo={quadra.tipo}
-                  avaliacao={quadra.avaliacao}
-                  imagem={quadra.imagem}
+                  quadra={quadra}
                 />
               ))
             )}

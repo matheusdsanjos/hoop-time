@@ -12,8 +12,7 @@ import quadraGinasioMultidisciplinar from '../assets/images/quadra-ginasio-multi
 import quadraTenisClube from '../assets/images/quadra-tenis-clube.png';
 import quadraClubeConcordia from '../assets/images/quadra-clube-concordia.png';
 
-
-interface Quadra {
+export interface Quadra {
   id: number;
   nome: string;
   bairro: string;
