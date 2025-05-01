@@ -279,7 +279,7 @@ const Home: React.FC = () => {
         <HeroContent>
           <HeroTitle>Bem-vindo ao Hoop Time</HeroTitle>
           <HeroSubtitle>
-            Sua plataforma completa para buscar informações sobre quadras de basquete em sua região.
+            A plataforma completa para buscar informações sobre quadras de basquete em sua região.
             Conecte-se com a comunidade e encontre os melhores locais para jogar.
           </HeroSubtitle>
           <HeroButtons>
@@ -299,12 +299,12 @@ const Home: React.FC = () => {
             <AboutContent>
               <AboutTitle>Sobre o Hoop Time</AboutTitle>
               <AboutText>
-                O Hoop Time nasceu da paixão pelo basquete e da necessidade de facilitar o acesso a quadras de basquete em sua região. 
+                O Hoop Time nasceu da paixão pelo basquete e da necessidade de facilitar o acesso ao basquete. 
                 Nossa plataforma foi criada para conectar jogadores a espaços de qualidade, 
                 sejam eles públicos ou privados.
               </AboutText>
               <AboutText>
-                Nosso objetivo é fomentar a prática esportiva e criar uma comunidade ativa de jogadores de basquete na cidade,
+                Nosso objetivo é fomentar a prática esportiva e criar uma comunidade ativa de jogadores de basquete,
                 facilitando o acesso à informação sobre locais para jogar e seus recursos.
               </AboutText>
               <AboutList>

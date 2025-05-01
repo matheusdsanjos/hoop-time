@@ -4,6 +4,13 @@ import quadraFlamboyant from '../assets/images/quadra-flamboyant.png';
 import quadraParqueEcologico from '../assets/images/quadra-parque-ecologico.png';
 import quadraVilaIapi from '../assets/images/quadra-vila-iapi.png';
 import quadraPontePreta from '../assets/images/quadra-ponte-preta.png';
+import quadraGuarani from '../assets/images/quadra-guarani.png';
+import quadraAcademiaBodytech from '../assets/images/quadra-bodytech-dom-pedro.png';
+import quadraSociedadeHicipica from '../assets/images/quadra-sociedade-hipica.png';
+import quadraFaculdadeEducaçãoFisica from '../assets/images/quadra-faculdade-educacao-fisica.png';
+import quadraGinasioMultidisciplinar from '../assets/images/quadra-ginasio-multidisciplinar.png';
+import quadraTenisClube from '../assets/images/quadra-tenis-clube.png';
+import quadraClubeConcordia from '../assets/images/quadra-clube-concordia.png';
 
 
 interface Quadra {
@@ -40,7 +47,7 @@ const quadrasDatabase: Quadra[] = [
   {
     id: 3,
     nome: "Quadra do Parque Ecológico de Campinas",
-    bairro: "Barão Geraldo",
+    bairro: "Vila Brandina",
     tipo: "publica",
     avaliacao: 3.7,
     endereco: "Avenida Heitor Penteado, km 3 - Vila Brandina",
@@ -67,65 +74,65 @@ const quadrasDatabase: Quadra[] = [
   {
     id: 6,
     nome: "Quadra no Guarani Futebol Clube",
-    bairro: "Cambuí",
+    bairro: "Jardim Guarani",
     tipo: "privada",
     avaliacao: 4.9,
-    endereco: "R. Maria Monteiro, 1650 - Cambuí",
-    imagem: "https://images.unsplash.com/photo-1627627256672-027a4613d028?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+    endereco: "Avenida Imperatriz Dona Tereza Cristina, 11 - Jardim Guarani",
+    imagem: quadraGuarani,
   },
   {
     id: 7,
-    nome: "Praça de Esportes",
-    bairro: "Jardim Chapadão",
-    tipo: "publica",
+    nome: "Quadra na Academia Bodytech Campinas Dom Pedro",
+    bairro: "Jardim Santa Genebra",
+    tipo: "privada",
     avaliacao: 3.8,
-    endereco: "R. Itatiba, 380 - Jardim Chapadão",
-    imagem: "https://images.unsplash.com/photo-1562552476-8ac59b2a2e46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+    endereco: "Avenida Guilherme Campos, 500 - Jardim Santa Genebra",
+    imagem: quadraAcademiaBodytech,
   },
   {
     id: 8,
-    nome: "Sport Center",
-    bairro: "Jardim das Paineiras",
+    nome: "Quadra na Sociedade Hípica de Campinas",
+    bairro: "Jardim das Palmeiras",
     tipo: "privada",
     avaliacao: 4.6,
-    endereco: "Av. José de Souza Campos, 1750 - Jardim das Paineiras",
-    imagem: "https://images.unsplash.com/photo-1579591919791-0e3737ae3808?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    endereco: "Rua Buriti, s/n - Bairro das Palmeiras",
+    imagem: quadraSociedadeHicipica,
   },
   {
     id: 9,
-    nome: "Quadra Comunitária",
-    bairro: "Taquaral",
+    nome: "Quadra na Faculdade de Educação Física da Unicamp",
+    bairro: "Cidade Universitária",
     tipo: "publica",
-    avaliacao: 3.2,
-    endereco: "R. Paula Bueno, 1000 - Taquaral",
-    imagem: "https://images.unsplash.com/photo-1551285635-bef669e035b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+    avaliacao: 2,
+    endereco: "Avenida Érico Veríssimo, 701 - Cidade Universitária Zeferino Vaz",
+    imagem: quadraFaculdadeEducaçãoFisica,
   },
   {
     id: 10,
-    nome: "Recreativo Campinas",
-    bairro: "Jardim Proença",
-    tipo: "privada",
+    nome: "Quadra do Ginásio Multidisciplinar da Unicamp",
+    bairro: "Cidade Universitária",
+    tipo: "publica",
     avaliacao: 4.3,
-    endereco: "R. Santos Dumont, 870 - Jardim Proença",
-    imagem: "https://images.unsplash.com/photo-1517747614396-d21the5e5f9e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    endereco: " Rua Elis Regina, 101 - Cidade Universitária",
+    imagem: quadraGinasioMultidisciplinar,
   },
   {
     id: 11,
-    nome: "Quadra do Parque Linear",
-    bairro: "Barão Geraldo",
-    tipo: "publica",
+    nome: "Quadra do Tênis Clube de Campinas",
+    bairro: "Cambuí",
+    tipo: "privada",
     avaliacao: 4.0,
-    endereco: "Av. Albino José Barbosa de Oliveira, 1000 - Barão Geraldo",
-    imagem: "https://images.unsplash.com/photo-1617914309185-9e63b3badfca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    endereco: "Rua Coronel Quirino, 1346 - Cambuí",
+    imagem: quadraTenisClube,
   },
   {
     id: 12,
-    nome: "Ginásio Poliesportivo",
-    bairro: "Centro",
-    tipo: "publica",
+    nome: "Quadra do Clube Concórdia",
+    bairro: "Vila Brandina",
+    tipo: "privada",
     avaliacao: 3.9,
-    endereco: "Av. Campos Sales, 650 - Centro",
-    imagem: "https://images.unsplash.com/photo-1593079831268-3381b0db4a77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80",
+    endereco: "Rodovia Heitor Penteado, s/n - Vila Brandina",
+    imagem: quadraClubeConcordia,
   }
 ];
 
@@ -133,6 +140,12 @@ const quadrasDatabase: Quadra[] = [
 export const bairrosCampinas = [
   "Taquaral",
   "Cambuí",
+  "Cidade Universitária",
+  "Vila Brandina",
+  "Jardim Guarani",
+  "Jardim Santa Genebra",
+  "Jardim das Palmeiras",
+  "Jardim Proença",
   "Barão Geraldo",
   "Vila Iapi",
   "Jardim Flamboyant",
