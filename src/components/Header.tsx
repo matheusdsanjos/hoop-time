@@ -85,13 +85,14 @@ const NavItem = styled.div<{ active: boolean }>`
   }
 `;
 
-const ActionButton = styled(Link)`
+const ActionLink = styled(Link)`
   background-color: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.primary} !important;
   padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.lg}`};
   border-radius: ${({ theme }) => theme.borderRadius.medium};
   font-weight: 600;
   transition: all 0.3s ease;
+  text-decoration: none;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.9);
@@ -117,11 +118,11 @@ const Header: React.FC = () => {
       <NavContainer>
         <Logo to="/">
           <SportsBasketball />
-          <span>Hoop Time</span>
+          HoopTime
         </Logo>
 
         <MenuToggle onClick={toggleMenu}>
-          {isMenuOpen ? '✕' : '☰'}
+          ☰
         </MenuToggle>
 
         <NavLinks isOpen={isMenuOpen}>
@@ -135,7 +136,7 @@ const Header: React.FC = () => {
             <Link to="/mapa">Mapa</Link>
           </NavItem>
           <NavItem active={isActive('/login')}>
-            <ActionButton to="/login">Entrar</ActionButton>
+            <ActionLink to="/login">Entrar</ActionLink>
           </NavItem>
         </NavLinks>
       </NavContainer>

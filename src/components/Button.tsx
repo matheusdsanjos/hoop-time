@@ -2,6 +2,12 @@ import React, { ButtonHTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 
+// Constantes para valores reutilizáveis
+const BORDER_WIDTH = '2px';
+const TRANSITION_DURATION = '0.3s';
+const HOVER_TRANSFORM = 'translateY(-2px)';
+const ACTIVE_TRANSFORM = 'translateY(0)';
+
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'text';
   size?: 'small' | 'medium' | 'large';
@@ -12,120 +18,150 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   to?: string;
 }
 
-const ButtonStyles = css<ButtonProps>`
+// Estilos base compartilhados
+const baseButtonStyles = css`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
   border-radius: ${({ theme }) => theme.borderRadius.medium};
-  transition: all 0.3s ease;
+  transition: all ${TRANSITION_DURATION} ease;
   cursor: pointer;
   border: none;
   outline: none;
-  
+  position: relative;
+  text-decoration: none;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px rgba(0, 31, 84, 0.3);
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.7;
+  }
+`;
+
+// Estilos de tamanho
+const sizeStyles = {
+  small: css`
+    padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.md}`};
+    font-size: 0.875rem;
+  `,
+  medium: css`
+    padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.lg}`};
+    font-size: 1rem;
+  `,
+  large: css`
+    padding: ${({ theme }) => `${theme.spacing.md} ${theme.spacing.xl}`};
+    font-size: 1.125rem;
+  `
+};
+
+const ButtonStyles = css<ButtonProps>`
+  ${baseButtonStyles}
+
   /* Tamanhos */
-  ${({ size, theme }) => 
-    size === 'small' && css`
-      padding: ${theme.spacing.xs} ${theme.spacing.md};
-      font-size: 0.875rem;
-    `}
-  
-  ${({ size, theme }) => 
-    size === 'medium' && css`
-      padding: ${theme.spacing.sm} ${theme.spacing.lg};
-      font-size: 1rem;
-    `}
-  
-  ${({ size, theme }) => 
-    size === 'large' && css`
-      padding: ${theme.spacing.md} ${theme.spacing.xl};
-      font-size: 1.125rem;
-    `}
-  
+  ${({ size = 'medium' }) => sizeStyles[size]}
+
   /* Variantes */
-  ${({ variant, theme }) => 
-    variant === 'primary' && css`
-      background-color: ${theme.colors.primary};
-      color: white;
-      
-      &:hover {
-        background-color: ${theme.colors.secondary};
-        color: ${theme.colors.primary};
-        transform: translateY(-2px);
-      }
-      
-      &:active {
-        transform: translateY(0);
-      }
-      
-      &:disabled {
-        background-color: ${theme.colors.border};
-        cursor: not-allowed;
-        transform: none;
-      }
-    `}
-  
-  ${({ variant, theme }) => 
-    variant === 'secondary' && css`
-      background-color: white;
-      color: ${theme.colors.primary};
-      border: 2px solid ${theme.colors.primary};
-      
-      &:hover {
-        background-color: ${theme.colors.primary};
-        color: ${theme.colors.secondary};
-        transform: translateY(-2px);
-      }
-      
-      &:active {
-        transform: translateY(0);
-      }
-      
-      &:disabled {
-        border-color: ${theme.colors.border};
-        color: ${theme.colors.lightText};
-        cursor: not-allowed;
-        transform: none;
-      }
-    `}
-  
-  ${({ variant, theme, isWhiteOutline }) => 
-    variant === 'outline' && css`
-      background-color: transparent;
-      color: ${isWhiteOutline ? 'white' : theme.colors.primary};
-      border: 1px solid ${isWhiteOutline ? 'white' : theme.colors.primary};
-      
-      &:hover {
-        background-color: ${isWhiteOutline ? 'white' : theme.colors.secondary};
-        color: ${theme.colors.primary};
-      }
-      
-      &:disabled {
-        border-color: ${theme.colors.border};
-        color: ${theme.colors.lightText};
-        cursor: not-allowed;
-      }
-    `}
-  
-  ${({ variant, theme }) => 
-    variant === 'text' && css`
-      background-color: transparent;
-      color: ${theme.colors.primary};
-      padding-left: ${theme.spacing.sm};
-      padding-right: ${theme.spacing.sm};
-      
-      &:hover {
-        color: ${theme.colors.secondary};
-        background-color: ${theme.colors.primary};
-        border-radius: ${theme.borderRadius.small};
-      }
-      
-      &:disabled {
-        color: ${theme.colors.lightText};
-        cursor: not-allowed;
-      }
-    `}
-  
+  ${({ variant, theme, isWhiteOutline }) => {
+    switch (variant) {
+      case 'primary':
+        return css`
+          background-color: ${theme.colors.primary};
+          color: white;
+          
+          &:hover:not(:disabled) {
+            background-color: ${theme.colors.secondary};
+            color: ${theme.colors.primary};
+            border: ${BORDER_WIDTH} solid ${theme.colors.primary};
+            transform: ${HOVER_TRANSFORM};
+          }
+          
+          &:active:not(:disabled) {
+            transform: ${ACTIVE_TRANSFORM};
+          }
+          
+          &:disabled {
+            background-color: ${theme.colors.border};
+          }
+        `;
+
+      case 'secondary':
+        return css`
+          background-color: white;
+          color: ${theme.colors.primary};
+          border: ${BORDER_WIDTH} solid ${theme.colors.primary};
+          
+          &:hover:not(:disabled) {
+            background-color: ${theme.colors.primary};
+            color: ${theme.colors.secondary};
+            border: ${BORDER_WIDTH} solid ${theme.colors.secondary};
+            transform: ${HOVER_TRANSFORM};
+          }
+          
+          &:active:not(:disabled) {
+            transform: ${ACTIVE_TRANSFORM};
+          }
+          
+          &:disabled {
+            border-color: ${theme.colors.border};
+            color: ${theme.colors.lightText};
+          }
+        `;
+
+      case 'outline':
+        return css`
+          background-color: transparent;
+          color: ${isWhiteOutline ? 'white' : theme.colors.primary};
+          border: ${BORDER_WIDTH} solid ${isWhiteOutline ? 'white' : theme.colors.primary};
+          
+          &:hover:not(:disabled) {
+            background-color: ${isWhiteOutline ? 'white' : theme.colors.secondary};
+            color: ${theme.colors.primary};
+            transform: ${HOVER_TRANSFORM};
+          }
+          
+          &:active:not(:disabled) {
+            transform: ${ACTIVE_TRANSFORM};
+          }
+          
+          &:disabled {
+            border-color: ${theme.colors.border};
+            color: ${theme.colors.lightText};
+          }
+        `;
+
+      case 'text':
+        return css`
+          background-color: transparent;
+          color: ${theme.colors.primary};
+          padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.md}`};
+          
+          &:hover:not(:disabled) {
+            color: ${theme.colors.secondary};
+            background-color: ${theme.colors.primary};
+            border-radius: ${theme.borderRadius.small};
+            transform: ${HOVER_TRANSFORM};
+          }
+          
+          &:active:not(:disabled) {
+            transform: ${ACTIVE_TRANSFORM};
+          }
+          
+          &:disabled {
+            color: ${theme.colors.lightText};
+          }
+        `;
+
+      default:
+        return '';
+    }
+  }}
+
   /* Largura total */
   ${({ fullWidth }) => 
     fullWidth && css`
@@ -135,16 +171,19 @@ const ButtonStyles = css<ButtonProps>`
   /* Loading state */
   ${({ isLoading }) => 
     isLoading && css`
-      position: relative;
       color: transparent !important;
+      pointer-events: none;
       
       &::after {
         content: '';
         position: absolute;
         width: 1rem;
         height: 1rem;
+        top: 50%;
+        left: 50%;
+        margin: -0.5rem 0 0 -0.5rem;
         border-radius: 50%;
-        border: 2px solid currentColor;
+        border: ${BORDER_WIDTH} solid currentColor;
         border-right-color: transparent;
         animation: spin 0.8s linear infinite;
       }
@@ -166,7 +205,6 @@ const StyledButton = styled.button<ButtonProps>`
 
 const StyledLink = styled(RouterLink)<ButtonProps>`
   ${ButtonStyles}
-  text-decoration: none;
 `;
 
 const Button: React.FC<ButtonProps> = ({ 
@@ -180,16 +218,22 @@ const Button: React.FC<ButtonProps> = ({
   to,
   ...props 
 }) => {
+  const commonProps = {
+    variant,
+    size,
+    fullWidth,
+    isLoading,
+    isWhiteOutline,
+    'aria-busy': isLoading,
+    disabled: props.disabled || isLoading,
+    ...props
+  };
+
   if (as === RouterLink || to) {
     return (
       <StyledLink
         to={to || ''}
-        variant={variant}
-        size={size}
-        fullWidth={fullWidth}
-        isLoading={isLoading}
-        isWhiteOutline={isWhiteOutline}
-        {...props}
+        {...commonProps}
       >
         {children}
       </StyledLink>
@@ -198,13 +242,8 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <StyledButton
-      variant={variant}
-      size={size}
-      fullWidth={fullWidth}
-      isLoading={isLoading}
-      isWhiteOutline={isWhiteOutline}
       as={as}
-      {...props}
+      {...commonProps}
     >
       {children}
     </StyledButton>

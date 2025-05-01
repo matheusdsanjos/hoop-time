@@ -102,7 +102,7 @@ const Footer: React.FC = () => {
         <FooterSection>
           <FooterLogo>Hoop Time</FooterLogo>
           <FooterText>
-            Sua plataforma para encontrar, agendar e jogar basquete em Campinas.
+            A plataforma certa para encontrar, agendar e jogar basquete.
           </FooterText>
         </FooterSection>
 

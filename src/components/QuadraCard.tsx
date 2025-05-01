@@ -11,6 +11,8 @@ interface QuadraCardProps {
   avaliacao: number;
   imagem: string;
   disponivel?: boolean;
+  horarioFuncionamento?: string;
+  endereco?: string;
 }
 
 const CardContainer = styled(Link)`
@@ -36,6 +38,20 @@ const CardImage = styled.div<{ imageUrl: string }>`
   background-size: cover;
   background-position: center;
   position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
 `;
 
 const CardBadge = styled.span<{ tipo: 'publica' | 'privada' }>`
@@ -90,6 +106,28 @@ const RatingValue = styled.span`
   font-weight: 600;
 `;
 
+const DisponibilidadeTag = styled.div<{ disponivel: boolean }>`
+  position: absolute;
+  top: ${({ theme }) => theme.spacing.md};
+  right: ${({ theme }) => theme.spacing.md};
+  background-color: ${({ disponivel, theme }) => 
+    disponivel ? theme.colors.success : theme.colors.error};
+  color: white;
+  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
+  border-radius: ${({ theme }) => theme.borderRadius.small};
+  font-size: 0.8rem;
+  font-weight: 600;
+`;
+
+const CardInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.xs};
+  margin-top: ${({ theme }) => theme.spacing.md};
+  font-size: 0.9rem;
+  color: ${({ theme }) => theme.colors.lightText};
+`;
+
 const QuadraCard: React.FC<QuadraCardProps> = ({
   id,
   nome,
@@ -97,7 +135,9 @@ const QuadraCard: React.FC<QuadraCardProps> = ({
   tipo,
   avaliacao,
   imagem,
-  disponivel = true
+  disponivel = true,
+  horarioFuncionamento,
+  endereco
 }) => {
   // Função para renderizar estrelas
   const renderStars = (rating: number) => {
@@ -122,30 +162,52 @@ const QuadraCard: React.FC<QuadraCardProps> = ({
 
   return (
     <CardContainer to={`/quadras/${id}`}>
-      <CardImage imageUrl={imagem}>
+      <CardImage 
+        imageUrl={imagem}
+        role="img"
+        aria-label={`Foto da quadra ${nome}`}
+      >
         <CardBadge tipo={tipo}>
           {tipo === 'publica' ? 'Pública' : 'Privada'}
         </CardBadge>
+        {tipo === 'privada' && (
+          <DisponibilidadeTag disponivel={disponivel}>
+            {disponivel ? 'Disponível' : 'Indisponível'}
+          </DisponibilidadeTag>
+        )}
       </CardImage>
       <CardContent>
         <CardTitle>{nome}</CardTitle>
         <CardLocation>{bairro}</CardLocation>
         
+        <CardInfo>
+          {horarioFuncionamento && (
+            <span>Horário: {horarioFuncionamento}</span>
+          )}
+          {endereco && (
+            <span>Endereço: {endereco}</span>
+          )}
+        </CardInfo>
+        
         <CardFooter>
           <Rating>
-            <Stars>{renderStars(avaliacao)}</Stars>
+            <Stars aria-label={`Avaliação: ${avaliacao} estrelas`}>
+              {renderStars(avaliacao)}
+            </Stars>
             <RatingValue>{avaliacao.toFixed(1)}</RatingValue>
           </Rating>
           
           {tipo === 'privada' && (
             <Button 
               variant="outline" 
-              size="small" 
+              size="small"
+              disabled={!disponivel}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 // Lógica para agendar
               }}
+              aria-label={disponivel ? 'Agendar quadra' : 'Quadra indisponível'}
             >
               {disponivel ? 'Agendar' : 'Indisponível'}
             </Button>

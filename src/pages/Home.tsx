@@ -1,36 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import QuadraCard from '../components/QuadraCard';
 import Button from '../components/Button';
+import { buscarQuadras } from '../api/quadrasApi';
 
-// Dados de exemplo
-const quadrasDestaque = [
-  {
-    id: 1,
-    nome: "Quadra Taquaral",
-    bairro: "Taquaral",
-    tipo: "publica" as const,
-    avaliacao: 4.5,
-    imagem: "https://images.unsplash.com/photo-1505666287802-931dc83a0fe4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80",
-  },
-  {
-    id: 2,
-    nome: "Arena Sports",
-    bairro: "Cambuí",
-    tipo: "privada" as const,
-    avaliacao: 4.8,
-    imagem: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80",
-  },
-  {
-    id: 3,
-    nome: "Quadra do Bosque",
-    bairro: "Barão Geraldo",
-    tipo: "publica" as const,
-    avaliacao: 3.7,
-    imagem: "https://images.unsplash.com/photo-1519432359516-73a2bb421826?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-  }
-];
+interface Quadra {
+  id: number;
+  nome: string;
+  bairro: string;
+  tipo: 'publica' | 'privada';
+  avaliacao: number;
+  imagem: string;
+}
 
 // Estilos
 const HeroSection = styled.section`
@@ -273,6 +255,28 @@ const AboutListItem = styled.li`
 `;
 
 const Home: React.FC = () => {
+  const [quadrasDestaque, setQuadrasDestaque] = useState<Quadra[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchQuadrasDestaque = async () => {
+      setIsLoading(true);
+      try {
+        const quadras = await buscarQuadras({
+          avaliacaoMinima: 4.0,
+          ordenacao: 'avaliacao'
+        });
+        setQuadrasDestaque(quadras.slice(0, 3));
+      } catch (error) {
+        console.error('Erro ao buscar quadras em destaque:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchQuadrasDestaque();
+  }, []);
+
   return (
     <>
       <HeroSection>
@@ -360,17 +364,21 @@ const Home: React.FC = () => {
         <Container>
           <SectionTitle>Quadras em Destaque</SectionTitle>
           <CardGrid>
-            {quadrasDestaque.map((quadra) => (
-              <QuadraCard
-                key={quadra.id}
-                id={quadra.id}
-                nome={quadra.nome}
-                bairro={quadra.bairro}
-                tipo={quadra.tipo}
-                avaliacao={quadra.avaliacao}
-                imagem={quadra.imagem}
-              />
-            ))}
+            {isLoading ? (
+              <p>Carregando quadras em destaque...</p>
+            ) : (
+              quadrasDestaque.map((quadra) => (
+                <QuadraCard
+                  key={quadra.id}
+                  id={quadra.id}
+                  nome={quadra.nome}
+                  bairro={quadra.bairro}
+                  tipo={quadra.tipo}
+                  avaliacao={quadra.avaliacao}
+                  imagem={quadra.imagem}
+                />
+              ))
+            )}
           </CardGrid>
           <div style={{ textAlign: 'center', marginTop: '2rem' }}>
             <Button as={Link} to="/quadras" variant="secondary">
