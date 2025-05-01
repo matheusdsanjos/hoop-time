@@ -13,6 +13,7 @@ import Mapa from './pages/Mapa';
 import QuadrasList from './pages/QuadrasList';
 import QuadraDetail from './pages/QuadraDetail';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import NotFound from './pages/NotFound';
 
 const App: React.FC = () => {
@@ -27,6 +28,7 @@ const App: React.FC = () => {
             <Route path="/quadras" element={<QuadrasList />} />
             <Route path="/quadras/:id" element={<QuadraDetail />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/cadastro" element={<Register />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

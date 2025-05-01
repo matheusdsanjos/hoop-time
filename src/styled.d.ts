@@ -14,6 +14,7 @@ declare module 'styled-components' {
       border: string;
       error: string;
       success: string;
+      warning: string;
     };
     fonts: {
       main: string;

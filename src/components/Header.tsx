@@ -80,7 +80,7 @@ const NavItem = styled.div<{ active: boolean }>`
 
     &:hover {
       color: ${({ theme }) => theme.colors.secondary};
-      background-color: rgb(255, 255, 255, 0.50);
+      background-color: rgba(255, 255, 255, 0.15);
     }
   }
 `;
@@ -95,6 +95,7 @@ const ActionButton = styled(Link)`
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.9);
+    color: ${({ theme }) => theme.colors.primaryDark} !important;
     transform: translateY(-2px);
   }
 `;

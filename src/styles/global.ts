@@ -2,9 +2,9 @@ import { createGlobalStyle } from 'styled-components';
 
 export const theme = {
   colors: {
-    primary: '#FF8C00', // Laranja
-    primaryLight: '#FFA333',
-    primaryDark: '#E67E00',
+    primary: '#001f54', // Azul marinho
+    primaryLight: '#002b75',
+    primaryDark: '#001333',
     secondary: '#FFFFFF', // Branco
     text: '#333333',
     lightText: '#666666',
@@ -12,7 +12,8 @@ export const theme = {
     backgroundAlt: '#F8F8F8',
     border: '#E0E0E0',
     error: '#E53935',
-    success: '#43A047'
+    success: '#43A047',
+    warning: '#FFC107' // Amarelo para estrelas
   },
   fonts: {
     main: "'Inter', sans-serif"

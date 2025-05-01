@@ -7,6 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'small' | 'medium' | 'large';
   fullWidth?: boolean;
   isLoading?: boolean;
+  isWhiteOutline?: boolean;
   as?: React.ElementType;
   to?: string;
 }
@@ -48,7 +49,8 @@ const ButtonStyles = css<ButtonProps>`
       color: white;
       
       &:hover {
-        background-color: ${theme.colors.primaryDark};
+        background-color: ${theme.colors.secondary};
+        color: ${theme.colors.primary};
         transform: translateY(-2px);
       }
       
@@ -70,7 +72,8 @@ const ButtonStyles = css<ButtonProps>`
       border: 2px solid ${theme.colors.primary};
       
       &:hover {
-        background-color: ${theme.colors.backgroundAlt};
+        background-color: ${theme.colors.primary};
+        color: ${theme.colors.secondary};
         transform: translateY(-2px);
       }
       
@@ -86,14 +89,15 @@ const ButtonStyles = css<ButtonProps>`
       }
     `}
   
-  ${({ variant, theme }) => 
+  ${({ variant, theme, isWhiteOutline }) => 
     variant === 'outline' && css`
       background-color: transparent;
-      color: ${theme.colors.primary};
-      border: 1px solid ${theme.colors.primary};
+      color: ${isWhiteOutline ? 'white' : theme.colors.primary};
+      border: 1px solid ${isWhiteOutline ? 'white' : theme.colors.primary};
       
       &:hover {
-        background-color: rgba(255, 140, 0, 0.1);
+        background-color: ${isWhiteOutline ? 'white' : theme.colors.secondary};
+        color: ${theme.colors.primary};
       }
       
       &:disabled {
@@ -111,7 +115,9 @@ const ButtonStyles = css<ButtonProps>`
       padding-right: ${theme.spacing.sm};
       
       &:hover {
-        text-decoration: underline;
+        color: ${theme.colors.secondary};
+        background-color: ${theme.colors.primary};
+        border-radius: ${theme.borderRadius.small};
       }
       
       &:disabled {
@@ -169,6 +175,7 @@ const Button: React.FC<ButtonProps> = ({
   size = 'medium', 
   fullWidth = false,
   isLoading = false,
+  isWhiteOutline = false,
   as,
   to,
   ...props 
@@ -181,6 +188,7 @@ const Button: React.FC<ButtonProps> = ({
         size={size}
         fullWidth={fullWidth}
         isLoading={isLoading}
+        isWhiteOutline={isWhiteOutline}
         {...props}
       >
         {children}
@@ -194,6 +202,7 @@ const Button: React.FC<ButtonProps> = ({
       size={size}
       fullWidth={fullWidth}
       isLoading={isLoading}
+      isWhiteOutline={isWhiteOutline}
       as={as}
       {...props}
     >

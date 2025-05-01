@@ -14,6 +14,14 @@ interface Quadra {
   endereco?: string;
 }
 
+interface Comment {
+  id: number;
+  author: string;
+  rating: number;
+  text: string;
+  date: string;
+}
+
 const PageContainer = styled.div`
   padding: ${({ theme }) => theme.spacing.xl} 0;
 `;
@@ -226,11 +234,114 @@ const ErrorContainer = styled.div`
   }
 `;
 
+const CommentSection = styled.div`
+  margin-top: ${({ theme }) => theme.spacing.xl};
+  padding-top: ${({ theme }) => theme.spacing.xl};
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+`;
+
+const CommentForm = styled.form`
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
+`;
+
+const RatingInput = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.md};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+`;
+
+const StarButton = styled.button<{ isActive: boolean }>`
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: ${({ isActive, theme }) => isActive ? theme.colors.warning : theme.colors.lightText};
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.warning};
+  }
+`;
+
+const TextArea = styled.textarea`
+  width: 100%;
+  min-height: 100px;
+  padding: ${({ theme }) => theme.spacing.md};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.borderRadius.small};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  font-family: inherit;
+  resize: vertical;
+`;
+
+const CommentList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.lg};
+`;
+
+const CommentCard = styled.div`
+  background-color: ${({ theme }) => theme.colors.background};
+  padding: ${({ theme }) => theme.spacing.lg};
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  box-shadow: ${({ theme }) => theme.shadows.small};
+`;
+
+const CommentHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+`;
+
+const CommentAuthor = styled.div`
+  font-weight: 600;
+`;
+
+const CommentDate = styled.div`
+  color: ${({ theme }) => theme.colors.lightText};
+  font-size: 0.9rem;
+`;
+
+const CommentRating = styled.div`
+  color: ${({ theme }) => theme.colors.warning};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+`;
+
+const CommentText = styled.p`
+  margin: 0;
+  line-height: 1.5;
+`;
+
+const Label = styled.label`
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
 const QuadraDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [quadra, setQuadra] = useState<Quadra | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [userRating, setUserRating] = useState<number>(0);
+  const [commentText, setCommentText] = useState('');
+  const [comments, setComments] = useState<Comment[]>([
+    {
+      id: 1,
+      author: "João Silva",
+      rating: 4,
+      text: "Ótima quadra! Sempre bem cuidada e com boa iluminação.",
+      date: "2024-03-15"
+    },
+    {
+      id: 2,
+      author: "Maria Santos",
+      rating: 5,
+      text: "Uma das melhores quadras da região. Recomendo!",
+      date: "2024-03-14"
+    }
+  ]);
   
   const abrirNoMapa = () => {
     if (quadra?.endereco) {
@@ -287,6 +398,34 @@ const QuadraDetail: React.FC = () => {
     }
 
     return stars.join('');
+  };
+  
+  const handleRatingClick = (rating: number) => {
+    setUserRating(rating);
+  };
+
+  const handleCommentSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (userRating === 0) {
+      alert('Por favor, selecione uma avaliação antes de enviar seu comentário.');
+      return;
+    }
+    if (!commentText.trim()) {
+      alert('Por favor, escreva um comentário antes de enviar.');
+      return;
+    }
+
+    const newComment: Comment = {
+      id: comments.length + 1,
+      author: "Usuário Anônimo",
+      rating: userRating,
+      text: commentText,
+      date: new Date().toISOString().split('T')[0]
+    };
+
+    setComments([newComment, ...comments]);
+    setCommentText('');
+    setUserRating(0);
   };
   
   if (isLoading) {
@@ -406,6 +545,57 @@ const QuadraDetail: React.FC = () => {
             </ButtonGroup>
           </SidebarCard>
         </DetailContent>
+        
+        <CommentSection>
+          <h2>Avaliações e Comentários</h2>
+          
+          <CommentForm onSubmit={handleCommentSubmit}>
+            <RatingInput>
+              <Label>Sua avaliação:</Label>
+              <div>
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <StarButton
+                    key={star}
+                    type="button"
+                    isActive={star <= userRating}
+                    onClick={() => handleRatingClick(star)}
+                  >
+                    ★
+                  </StarButton>
+                ))}
+              </div>
+            </RatingInput>
+            
+            <TextArea
+              placeholder="Escreva seu comentário aqui..."
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+            />
+            
+            <Button type="submit" variant="primary">
+              Enviar Avaliação
+            </Button>
+          </CommentForm>
+          
+          <CommentList>
+            {comments.map((comment) => (
+              <CommentCard key={comment.id}>
+                <CommentHeader>
+                  <CommentAuthor>{comment.author}</CommentAuthor>
+                  <CommentDate>{comment.date}</CommentDate>
+                </CommentHeader>
+                <CommentRating>
+                  {[...Array(5)].map((_, index) => (
+                    <span key={index}>
+                      {index < comment.rating ? '★' : '☆'}
+                    </span>
+                  ))}
+                </CommentRating>
+                <CommentText>{comment.text}</CommentText>
+              </CommentCard>
+            ))}
+          </CommentList>
+        </CommentSection>
       </Container>
     </PageContainer>
   );

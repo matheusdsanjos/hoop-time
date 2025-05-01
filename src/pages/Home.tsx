@@ -35,7 +35,7 @@ const quadrasDestaque = [
 // Estilos
 const HeroSection = styled.section`
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url('https://images.unsplash.com/photo-1546519638-68e109acd27d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80');
+    url('https://images.pexels.com/photos/18460191/pexels-photo-18460191/free-photo-of-basketball-field-during-sunset.jpeg');
   background-size: cover;
   background-position: center;
   padding: ${({ theme }) => `${theme.spacing.xxl} 0`};
@@ -286,7 +286,7 @@ const Home: React.FC = () => {
             <Button as={Link} to="/quadras" size="large">
               Explorar Quadras
             </Button>
-            <Button as={Link} to="/mapa" variant="outline" size="large">
+            <Button as={Link} to="/mapa" variant="outline" size="large" isWhiteOutline>
               Ver no Mapa
             </Button>
           </HeroButtons>
@@ -401,6 +401,7 @@ const Home: React.FC = () => {
               to="/mapa"
               variant="outline"
               size="large"
+              isWhiteOutline
             >
               Abrir Mapa
             </Button>

@@ -44,6 +44,7 @@ const FooterLink = styled(Link)`
 
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
+    text-decoration: underline;
   }
 `;
 
