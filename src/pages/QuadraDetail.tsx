@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import { buscarQuadraPorId } from '../api/quadrasApi';
+import AgendamentoModal from '../components/AgendamentoModal';
 
 interface Quadra {
   id: number;
@@ -364,6 +365,7 @@ const QuadraDetail: React.FC = () => {
       date: "2024-03-14"
     }
   ]);
+  const [isAgendamentoModalOpen, setIsAgendamentoModalOpen] = useState(false);
   
   const abrirNoMapa = () => {
     if (quadra?.endereco) {
@@ -568,7 +570,13 @@ const QuadraDetail: React.FC = () => {
             <ButtonGroup>
               {quadra.tipo === 'privada' ? (
                 <>
-                  <Button variant="primary" fullWidth>Agendar Horário</Button>
+                  <Button 
+                    variant="primary" 
+                    fullWidth 
+                    onClick={() => setIsAgendamentoModalOpen(true)}
+                  >
+                    Agendar Horário
+                  </Button>
                   <Button variant="outline" fullWidth>Solicitar Informações</Button>
                 </>
               ) : (
@@ -628,6 +636,15 @@ const QuadraDetail: React.FC = () => {
             ))}
           </CommentList>
         </CommentSection>
+
+        {quadra && (
+          <AgendamentoModal
+            isOpen={isAgendamentoModalOpen}
+            onClose={() => setIsAgendamentoModalOpen(false)}
+            quadraId={quadra.id}
+            quadraNome={quadra.nome}
+          />
+        )}
       </Container>
     </PageContainer>
   );
