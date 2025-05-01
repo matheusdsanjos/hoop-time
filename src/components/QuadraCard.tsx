@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Button from './Button';
 
 interface Quadra {
   id: number;
@@ -62,14 +61,36 @@ const CardBadge = styled.span<{ tipo: 'publica' | 'privada' }>`
   position: absolute;
   top: ${({ theme }) => theme.spacing.md};
   left: ${({ theme }) => theme.spacing.md};
-  background-color: ${({ tipo, theme }) => 
-    tipo === 'publica' ? theme.colors.success : theme.colors.primary};
-  color: white;
+  background-color: ${({ tipo }) => 
+    tipo === 'publica' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(46, 173, 87, 0.95)'};
+  color: ${({ tipo }) => 
+    tipo === 'publica' ? '#333' : 'white'};
   padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
-  border-radius: ${({ theme }) => theme.borderRadius.small};
-  font-size: 0.8rem;
-  font-weight: 600;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(4px);
+  box-shadow: ${({ tipo }) => 
+    tipo === 'publica' 
+      ? '0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05)' 
+      : '0 2px 4px rgba(0, 0, 0, 0.1)'};
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: ${({ tipo }) => 
+      tipo === 'publica'
+        ? '0 4px 6px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05)'
+        : '0 4px 6px rgba(0, 0, 0, 0.15)'};
+  }
+
+  span {
+    font-size: 1rem;
+  }
 `;
 
 const CardContent = styled.div`
@@ -90,9 +111,7 @@ const CardLocation = styled.p`
 
 const CardFooter = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-top: ${({ theme }) => theme.spacing.lg};
 `;
 
 const Rating = styled.div`
@@ -107,19 +126,6 @@ const Stars = styled.div`
 
 const RatingValue = styled.span`
   margin-left: ${({ theme }) => theme.spacing.xs};
-  font-weight: 600;
-`;
-
-const DisponibilidadeTag = styled.div<{ disponivel: boolean }>`
-  position: absolute;
-  top: ${({ theme }) => theme.spacing.md};
-  right: ${({ theme }) => theme.spacing.md};
-  background-color: ${({ disponivel, theme }) => 
-    disponivel ? theme.colors.success : theme.colors.error};
-  color: white;
-  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
-  border-radius: ${({ theme }) => theme.borderRadius.small};
-  font-size: 0.8rem;
   font-weight: 600;
 `;
 
@@ -162,13 +168,18 @@ const QuadraCard: React.FC<QuadraCardProps> = ({ quadra }) => {
         aria-label={`Foto da quadra ${quadra.nome}`}
       >
         <CardBadge tipo={quadra.tipo}>
-          {quadra.tipo === 'publica' ? 'Pública' : 'Privada'}
+          {quadra.tipo === 'publica' ? (
+            <>
+              <span>❤️</span>
+              Pública
+            </>
+          ) : (
+            <>
+              <span>💰</span>
+              Privada
+            </>
+          )}
         </CardBadge>
-        {quadra.tipo === 'privada' && (
-          <DisponibilidadeTag disponivel={quadra.disponivel || true}>
-            {quadra.disponivel ? 'Disponível' : 'Indisponível'}
-          </DisponibilidadeTag>
-        )}
       </CardImage>
       <CardContent>
         <CardTitle>{quadra.nome}</CardTitle>
@@ -190,22 +201,6 @@ const QuadraCard: React.FC<QuadraCardProps> = ({ quadra }) => {
             </Stars>
             <RatingValue>{quadra.avaliacao.toFixed(1)}</RatingValue>
           </Rating>
-          
-          {quadra.tipo === 'privada' && (
-            <Button 
-              variant="outline" 
-              size="small"
-              disabled={!quadra.disponivel}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                // Lógica para agendar
-              }}
-              aria-label={quadra.disponivel ? 'Agendar quadra' : 'Quadra indisponível'}
-            >
-              {quadra.disponivel ? 'Agendar' : 'Indisponível'}
-            </Button>
-          )}
         </CardFooter>
       </CardContent>
     </CardContainer>

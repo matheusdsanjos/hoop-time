@@ -69,14 +69,36 @@ const Badge = styled.div<{ tipo: 'publica' | 'privada' }>`
   position: absolute;
   top: ${({ theme }) => theme.spacing.md};
   left: ${({ theme }) => theme.spacing.md};
-  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.md}`};
-  background-color: ${({ tipo, theme }) => 
-    tipo === 'publica' ? theme.colors.success : theme.colors.primary};
-  color: white;
-  font-weight: 600;
-  font-size: 0.9rem;
-  border-radius: ${({ theme }) => theme.borderRadius.small};
+  background-color: ${({ tipo }) => 
+    tipo === 'publica' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(46, 173, 87, 0.95)'};
+  color: ${({ tipo }) => 
+    tipo === 'publica' ? '#333' : 'white'};
+  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(4px);
+  box-shadow: ${({ tipo }) => 
+    tipo === 'publica' 
+      ? '0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05)' 
+      : '0 2px 4px rgba(0, 0, 0, 0.1)'};
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: ${({ tipo }) => 
+      tipo === 'publica'
+        ? '0 4px 6px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05)'
+        : '0 4px 6px rgba(0, 0, 0, 0.15)'};
+  }
+
+  span {
+    font-size: 1rem;
+  }
 `;
 
 const Title = styled.h1`
@@ -464,7 +486,17 @@ const QuadraDetail: React.FC = () => {
         <ImageContainer>
           <Image src={quadra.imagem} alt={quadra.nome} />
           <Badge tipo={quadra.tipo}>
-            {quadra.tipo === 'publica' ? 'Pública' : 'Privada'}
+            {quadra.tipo === 'publica' ? (
+              <>
+                <span>❤️</span>
+                Pública
+              </>
+            ) : (
+              <>
+                <span>💰</span>
+                Privada
+              </>
+            )}
           </Badge>
         </ImageContainer>
         
