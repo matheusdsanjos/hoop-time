@@ -6,6 +6,7 @@ import { theme } from './styles/global';
 // Componentes
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 // Páginas
 import Home from './pages/Home';
@@ -20,6 +21,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <Router>
+        <ScrollToTop />
         <Header />
         <main>
           <Routes>

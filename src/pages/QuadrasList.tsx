@@ -104,6 +104,12 @@ const NoResults = styled.div`
   text-align: center;
   padding: ${({ theme }) => theme.spacing.xxl} 0;
   color: ${({ theme }) => theme.colors.lightText};
+  grid-column: 1 / -1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   
   h3 {
     font-size: 1.5rem;
