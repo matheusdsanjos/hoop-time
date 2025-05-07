@@ -94,14 +94,6 @@ src/
 └── index.tsx         # Ponto de entrada
 ```
 
-## Paleta de Cores
-
-- **Primária**: `#FF8C00` (Laranja)
-- **Secundária**: `#FFFFFF` (Branco)
-- **Texto**: `#333333` (Cinza Escuro)
-- **Fundo Alternativo**: `#F8F8F8` (Cinza Muito Claro)
-- **Sucesso**: `#43A047` (Verde)
-
 ## Design System
 
 O projeto utiliza um Design System próprio com os seguintes componentes:
@@ -110,21 +102,6 @@ O projeto utiliza um Design System próprio com os seguintes componentes:
 - **QuadraCard**: Cards para exibição de quadras na listagem
 - **Header/Footer**: Componentes de navegação e rodapé
 - **Elementos de Formulário**: Inputs, selects, etc.
-
-## Cronograma de Desenvolvimento
-
-1. **Fase 1** (Mês 1-2): Análise de requisitos e prototipação
-2. **Fase 2** (Mês 3-4): Desenvolvimento do frontend
-3. **Fase 3** (Mês 5-6): Implementação do backend e integração
-4. **Fase 4** (Mês 7-8): Testes e refinamentos
-5. **Fase 5** (Mês 9-10): Documentação e preparação para apresentação
-
-## Referências
-
-- React Documentation
-- TypeScript Handbook
-- Material Design Guidelines
-- Artigos acadêmicos sobre desenvolvimento web e UX/UI
 
 ## Autores
 
