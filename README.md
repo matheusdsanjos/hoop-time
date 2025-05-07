@@ -107,13 +107,23 @@ npm --version
 ## 🗂️ Estrutura do Projeto
 
 ```
-src/
-├── components/       # Componentes reutilizáveis
-├── pages/            # Páginas da aplicação
-├── styles/           # Temas e estilos globais
-├── assets/           # Imagens e arquivos estáticos
-├── App.tsx           # Componente principal
-└── index.tsx         # Ponto de entrada da aplicação
+hoop-time/
+├── public/                    # Arquivos públicos acessíveis diretamente pelo navegador
+├── src/                       # Código fonte da aplicação
+│   ├── api/                   # Serviços e funções para comunicação com APIs
+│   ├── assets/                # Arquivos estáticos (imagens, fontes, etc.)
+│   ├── components/            # Componentes React reutilizáveis
+│   ├── pages/                 # Componentes de página/tela completa
+│   ├── styles/                # Estilos globais e configurações de tema
+│   ├── types/                 # Definições de tipos TypeScript
+│   ├── App.tsx                # Componente principal que define rotas
+│   ├── index.tsx              # Ponto de entrada da aplicação React
+│   └── styled.d.ts            # Definições de tipos para styled-components
+├── .gitignore                 # Arquivos ignorados pelo Git
+├── package-lock.json          # Versões exatas das dependências (npm)
+├── package.json               # Configuração do projeto e dependências
+├── README.md                  # Documentação do projeto
+└── tsconfig.json              # Configuração do TypeScript
 ```
 
 ## 👥 Autores
