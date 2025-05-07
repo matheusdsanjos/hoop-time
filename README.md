@@ -42,8 +42,6 @@ O trabalho completo com fundamentação teórica, objetivos, metodologia e demai
    ```
    npm start
    ```
-Acesse a aplicação no navegador em:  
-➡️ **http://localhost:3000**
 
 5. Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver a aplicação.
 
