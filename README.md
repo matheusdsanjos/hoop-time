@@ -11,7 +11,9 @@ Trabalho de Conclusão de Curso (TCC)
 ## 📄 Documentação do TCC
 
 O trabalho completo com fundamentação teórica, objetivos, metodologia e demais seções do TCC pode ser acessado no link abaixo:
+
 [Clique aqui para acessar o TCC completo](https://docs.google.com/document/d/1tytNa4jHOeoLQNIOInc7ea9J3ddrrhvg/edit)
+
 ## 🚀 Como Rodar o Projeto
 
 ### Pré-requisitos
