@@ -21,27 +21,34 @@ O trabalho completo com fundamentação teórica, objetivos, metodologia e demai
 - Node.js (v14.x ou superior)  
 - npm (instalado com o Node.js)
 
-### Passos para executar o projeto
+### Instalação
 
-```bash
-# Clone o repositório
-git clone https://github.com/matheusdsanjos/hoop-time.git
+1. Clone este repositório:
+   ```
+   git clone https://github.com/matheusdsanjos/hoop-time.git
+   ```
 
-# Acesse a pasta do projeto
-cd hoop-time
+2. Navegue até a pasta do projeto:
+   ```
+   cd hoop-time
+   ```
 
-# Instale as dependências
-npm install
-
+3. Instale as dependências:
+   ```
+   npm install
+   ```
 # Inicie o servidor de desenvolvimento
 npm start
 ```
 
+4. Inicie o servidor de desenvolvimento:
+   ```
+   npm start
+   ```
 Acesse a aplicação no navegador em:  
 ➡️ **http://localhost:3000**
 
-Ou veja o projeto publicado em:  
-🔗 **https://matheusdsanjos.github.io/hoop-time/**
+5. Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver a aplicação.
 
 ## 🗂️ Estrutura do Projeto
 
