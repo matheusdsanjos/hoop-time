@@ -37,9 +37,6 @@ O trabalho completo com fundamentação teórica, objetivos, metodologia e demai
    ```
    npm install
    ```
-# Inicie o servidor de desenvolvimento
-npm start
-```
 
 4. Inicie o servidor de desenvolvimento:
    ```
