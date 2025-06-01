@@ -8,7 +8,7 @@ Trabalho de Conclusão de Curso (TCC)
 
 **Hoop Time** é um projeto de front-end web desenvolvido com React e TypeScript, que tem como objetivo principal facilitar a busca, avaliação e simulação de agendamentos de quadras de basquete. A proposta surgiu da dificuldade enfrentada por praticantes ao tentar encontrar espaços adequados para a prática esportiva, especialmente em regiões onde o futebol é historicamente priorizado. A aplicação promove a integração entre atletas e administradores de quadras, fomentando a prática esportiva e o uso consciente dos espaços disponíveis.
 
-## 📄 Documentação do TCC
+## 📄 Monografia
 
 O trabalho completo com fundamentação teórica, objetivos, metodologia e demais seções do TCC pode ser acessado no link abaixo:
 
