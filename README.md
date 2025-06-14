@@ -8,6 +8,18 @@ Trabalho de Conclusão de Curso (TCC)
 
 Resumo: O basquete, historicamente relegado a segundo plano em relação ao futebol no Brasil, enfrentou desafios significativos em sua infraestrutura, resultando em escassez de espaços adequados para sua prática. Este trabalho teve como objetivo desenvolver um modelo front-end web para mapeamento e agendamento de quadras de basquete. Foram utilizadas tecnologias modernas, como React e TypeScript, com foco em boas práticas de desenvolvimento web. A metodologia adotada baseou-se na prototipagem de interfaces, visando validar e refinar a proposta visual e funcional da aplicação. A plataforma é voltada especialmente a praticantes amadores e entusiastas do basquete, que buscam facilidade para encontrar e reservar quadras disponíveis em suas regiões. Ela permite localizar quadras próximas, visualizar informações detalhadas, realizar agendamentos e compartilhar avaliações, contribuindo para a democratização do acesso ao esporte. A arquitetura do sistema foi projetada de forma modular e escalável, permitindo futura integração com um back-end para expansão das funcionalidades. A implementação de tecnologias digitais mostrou-se uma ferramenta eficaz para superar as barreiras históricas de infraestrutura do basquete no país, oferecendo uma solução prática e acessível que promove o acesso ao esporte e a inclusão social.
 
+## 🎥 Demonstração
+
+### Versão Desktop
+Veja o Hoop Time em ação na versão para computador:
+
+[🖥️ **Assistir Demonstração Desktop no YouTube**](https://youtu.be/c9Xb9F-xo30)
+
+### Versão Mobile (Responsiva)
+Confira como a aplicação se adapta perfeitamente ao smartphone:
+
+[📱 **Assistir Demonstração Mobile no YouTube**](https://youtube.com/shorts/uU2PlQoSOyo)
+
 ## 📄 Monografia
 
 O trabalho completo com fundamentação teórica, objetivos, metodologia e demais seções do TCC pode ser acessado no link abaixo:
